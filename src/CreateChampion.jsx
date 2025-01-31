@@ -22,7 +22,7 @@ function CreateChampion({ onAddChampion }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        navigate(`/champions`)
+
 
         try {
             const response = await fetch('http://145.24.223.189:8000/champions/', {
@@ -40,8 +40,10 @@ function CreateChampion({ onAddChampion }) {
             }
 
             const newChampion = await response.json();
+            navigate(`/champions`)
             onAddChampion(newChampion);
             setFormData({   name: '', role: '', region: '', abilities: '', lore: '',});
+
         } catch (error) {
             console.error('Fout bij het verzenden van de champion:', error);
         }
